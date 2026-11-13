@@ -7,18 +7,7 @@ import mongoose from "mongoose";
 import { Doctor } from "./doctor.model";
 import { Patient } from "../patient/patient.model";
 import { createHttpError } from "../../utils/apiResponse";
-
-export interface DoctorQueryParams {
-  page?: string;
-  limit?: string;
-  search?: string;
-  sortBy?: string;
-  endDate?: string;
-  hospital?: string;
-  startDate?: string;
-  sortOrder?: string;
-  specialization?: string;
-}
+import { DoctorQueryParams } from "../../utils/InterfaceAll";
 
 export const getDoctors = async (query: DoctorQueryParams) => {
   const { page, limit, skip, sort } = buildPagination(

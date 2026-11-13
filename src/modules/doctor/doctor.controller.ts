@@ -2,11 +2,10 @@ import { Request, Response } from "express";
 import * as doctorService from "./doctor.service";
 import { sendResponse } from "../../utils/apiResponse";
 import { asyncHandler } from "../../utils/asyncHandler";
+import { DoctorQueryParams } from "../../utils/InterfaceAll";
 
 export const getDoctors = asyncHandler(async (req: Request, res: Response) => {
-  const result = await doctorService.getDoctors(
-    req.query as doctorService.DoctorQueryParams,
-  );
+  const result = await doctorService.getDoctors(req.query as DoctorQueryParams);
   sendResponse(
     res,
     200,

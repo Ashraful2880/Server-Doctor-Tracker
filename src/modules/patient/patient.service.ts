@@ -7,19 +7,7 @@ import mongoose from "mongoose";
 import { Patient } from "./patient.model";
 import { Doctor } from "../doctor/doctor.model";
 import { createHttpError } from "../../utils/apiResponse";
-
-export interface PatientQueryParams {
-  page?: string;
-  limit?: string;
-  search?: string;
-  gender?: string;
-  sortBy?: string;
-  endDate?: string;
-  doctorId?: string;
-  condition?: string;
-  startDate?: string;
-  sortOrder?: string;
-}
+import { PatientQueryParams } from "../../utils/InterfaceAll";
 
 export const getPatients = async (query: PatientQueryParams) => {
   const { page, limit, skip, sort } = buildPagination(
@@ -81,14 +69,14 @@ export const getPatients = async (query: PatientQueryParams) => {
 };
 
 export const createPatient = async (payload: {
-  name: string;
   age: number;
-  gender: "Male" | "Female" | "Other";
+  name: string;
   phone: string;
   email?: string;
-  condition: string;
   notes?: string;
   doctorId: string;
+  condition: string;
+  gender: "Male" | "Female" | "Other";
 }) => {
   const doctorExists = await Doctor.exists({ _id: payload.doctorId });
   if (!doctorExists) {
@@ -108,14 +96,14 @@ export const createPatient = async (payload: {
 export const updatePatient = async (
   id: string,
   payload: Partial<{
-    name: string;
     age: number;
-    gender: "Male" | "Female" | "Other";
+    name: string;
     phone: string;
     email?: string;
-    condition: string;
     notes?: string;
     doctorId: string;
+    condition: string;
+    gender: "Male" | "Female" | "Other";
   }>,
 ) => {
   if (payload.doctorId) {

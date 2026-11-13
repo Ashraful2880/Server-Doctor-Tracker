@@ -1,35 +1,26 @@
 import bcrypt from "bcryptjs";
-import mongoose, { Schema, Document } from "mongoose";
-
-export interface IUser extends Document {
-  name: string;
-  email: string;
-  role: "admin";
-  createdAt: Date;
-  updatedAt: Date;
-  password: string;
-  comparePassword(candidatePassword: string): Promise<boolean>;
-}
+import mongoose, { Schema } from "mongoose";
+import { IUser } from "../../utils/InterfaceAll";
 
 const userSchema = new Schema<IUser>(
   {
     name: {
+      trim: true,
       type: String,
       required: [true, "Name is required"],
-      trim: true,
     },
     email: {
+      trim: true,
       type: String,
-      required: [true, "Email is required"],
       unique: true,
       lowercase: true,
-      trim: true,
+      required: [true, "Email is required"],
     },
     password: {
       type: String,
-      required: [true, "Password is required"],
       minlength: 6,
       select: false,
+      required: [true, "Password is required"],
     },
     role: {
       type: String,

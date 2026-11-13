@@ -1,29 +1,17 @@
-import mongoose, { Schema, Document } from "mongoose";
-
-export interface IPatient extends Document {
-  name: string;
-  age: number;
-  phone: string;
-  email?: string;
-  notes?: string;
-  createdAt: Date;
-  updatedAt: Date;
-  condition: string;
-  doctorId: mongoose.Types.ObjectId;
-  gender: "Male" | "Female" | "Other";
-}
+import mongoose, { Schema } from "mongoose";
+import { IPatient } from "../../utils/InterfaceAll";
 
 const patientSchema = new Schema<IPatient>(
   {
     name: {
+      trim: true,
       type: String,
       required: [true, "Patient name is required"],
-      trim: true,
     },
     age: {
       type: Number,
-      required: [true, "Age is required"],
       min: [0, "Age cannot be negative"],
+      required: [true, "Age is required"],
       max: [150, "Age must be realistic"],
     },
     gender: {
@@ -32,27 +20,27 @@ const patientSchema = new Schema<IPatient>(
       required: [true, "Gender is required"],
     },
     phone: {
+      trim: true,
       type: String,
       required: [true, "Phone number is required"],
-      trim: true,
     },
     email: {
+      trim: true,
       type: String,
       lowercase: true,
-      trim: true,
     },
     condition: {
+      trim: true,
       type: String,
       required: [true, "Patient condition is required"],
-      trim: true,
     },
     notes: {
-      type: String,
       trim: true,
+      type: String,
     },
     doctorId: {
-      type: Schema.Types.ObjectId,
       ref: "Doctor",
+      type: Schema.Types.ObjectId,
       required: [true, "Assigned doctor is required"],
     },
   },

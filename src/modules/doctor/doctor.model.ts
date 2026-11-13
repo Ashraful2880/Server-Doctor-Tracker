@@ -1,43 +1,34 @@
-import mongoose, { Schema, Document } from "mongoose";
-
-export interface IDoctor extends Document {
-  name: string;
-  phone: string;
-  email: string;
-  createdAt: Date;
-  updatedAt: Date;
-  hospital: string;
-  specialization: string;
-}
+import mongoose, { Schema } from "mongoose";
+import { IDoctor } from "../../utils/InterfaceAll";
 
 const doctorSchema = new Schema<IDoctor>(
   {
     name: {
+      trim: true,
       type: String,
       required: [true, "Doctor name is required"],
-      trim: true,
     },
     specialization: {
+      trim: true,
       type: String,
       required: [true, "Specialization is required"],
-      trim: true,
     },
     hospital: {
+      trim: true,
       type: String,
       required: [true, "Hospital is required"],
-      trim: true,
     },
     phone: {
+      trim: true,
       type: String,
       required: [true, "Phone number is required"],
-      trim: true,
     },
     email: {
+      trim: true,
       type: String,
-      required: [true, "Email is required"],
       unique: true,
       lowercase: true,
-      trim: true,
+      required: [true, "Email is required"],
     },
   },
   {
