@@ -97,3 +97,4 @@ flowchart LR
 ### 2. MongoDB Compound Indexes & Aggregation Pipelines
 - Compound indexes (`specialization + createdAt`, `hospital + createdAt`, `doctorId + createdAt`, `condition + createdAt`) optimize filtered, paginated `.find().lean()` queries paired with parallel `.countDocuments()`.
 - `analytics.service.ts` computes `patientsPerDoctor`, `conditionDistribution`, and `dateStats` directly inside MongoDB via `$lookup`, `$group`, and `$dateToString`.
+
