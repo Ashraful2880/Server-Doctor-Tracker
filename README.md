@@ -66,6 +66,7 @@ npm start
 | :--- | :--- | :--- | :--- |
 | Health | `GET /health` | Basic uptime check | Public |
 | Auth | `POST /api/v1/auth/login` | Admin login, returns JWT | Public |
+| Auth | `POST /api/v1/auth/register` | Register new user, returns JWT | Public |
 | Auth | `GET /api/v1/auth/me` | Current admin profile | Bearer JWT |
 | Doctors | `GET /api/v1/doctors` | List doctors with search, filters, pagination | Bearer JWT |
 | Doctors | `POST /api/v1/doctors` | Create a doctor | Bearer JWT |
